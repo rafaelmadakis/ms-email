@@ -1,8 +1,8 @@
 package com.ms.email.adapter.inbound.consumers;
 
-import com.ms.email.adapter.inbound.dto.EmailDTO;
-import com.ms.email.application.entities.Email;
-import com.ms.email.application.ports.EmailService;
+import com.ms.email.adapter.dto.EmailDTO;
+import com.ms.email.application.domain.Email;
+import com.ms.email.application.ports.EmailServicePort;
 import org.springframework.amqp.rabbit.annotation.RabbitListener;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,7 +13,7 @@ import org.springframework.stereotype.Component;
 public class EmailConsumer {
 
     @Autowired
-    private EmailService emailService;
+    private EmailServicePort emailService;
 
     @RabbitListener(queues = "${spring.rabbitmq.queue}")
     public void listen(@Payload EmailDTO emailDTO) {
